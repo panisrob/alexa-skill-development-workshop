@@ -43,6 +43,7 @@ module.exports.guessingGameHandlers = Alexa.CreateStateHandler(states.GUESSINGGA
     },
     'GuessingGame': function() {
         this.emit(':ask', START_GAME, HELP_MESSAGE);
+        this.emitWithState('GuessingGameIntent');
     },
     'GuessingGameIntent': function() {
         var numberGuess = this.event.request.intent.slots.number.value;
