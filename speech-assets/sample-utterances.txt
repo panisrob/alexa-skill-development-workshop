@@ -1,0 +1,3 @@
+GuessingGameIntent {number}
+GuessingGameIntent the number is {number}
+GuessingGameIntent try {number}
