@@ -33,6 +33,9 @@ module.exports.startHandlers = Alexa.CreateStateHandler(states.START, {
 
         this.handler.state = states.GUESSINGGAME;
         this.emitWithState('GuessingGame');
+    },
+    'Unhandled': function() {
+        this.emitWithState('Start');
     }
 });
 
@@ -43,7 +46,7 @@ module.exports.guessingGameHandlers = Alexa.CreateStateHandler(states.GUESSINGGA
     },
     'GuessingGame': function() {
         this.emit(':ask', START_GAME, HELP_MESSAGE);
-        this.emitWithState('GuessingGameIntent');
+        //this.emitWithState('GuessingGameIntent');
     },
     'GuessingGameIntent': function() {
         var numberGuess = this.event.request.intent.slots.number.value;
@@ -55,8 +58,9 @@ module.exports.guessingGameHandlers = Alexa.CreateStateHandler(states.GUESSINGGA
         } else if (numberGuess == this.attributes.numberAnswer) {
             this.emit('Correct', numberGuess);
         }
-
-
+    },
+    'Unhandled': function() {
+        this.emit(':ask', 'Sorry, I didn\'t get that. Try saying a number.', 'Try saying a number.');
     }
 });
 
